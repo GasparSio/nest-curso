@@ -29,12 +29,12 @@ export class CoffessService {
     }
     create(createCoffeeDto: any){
         this.coffees.push(createCoffeeDto);
-        return this.coffees;
+        return createCoffeeDto;
     }
     update(id: string, updateCoffeeDto: any){
         const existingCoffee = this.findOne(id);
         if(existingCoffee) {
-            
+
         }
     }
     delete(id: string){
