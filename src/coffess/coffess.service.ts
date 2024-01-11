@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { Coffee } from './entities/coffee.entity';
 
 @Injectable()
@@ -9,13 +9,23 @@ export class CoffessService {
             name: "Capucchino Coffee",
             brand: "Buddy Brew",
             flavors: ['Chocolate', 'Vanilla']
+        },
+        {
+            id: 2,
+            name: "Americano Coffee",
+            brand: "Buddy Brew",
+            flavors: ['Cinnamon', 'Strawbery']
         }
     ];
     findAll(){
         return this.coffees;
     }
     findOne(id: string){
-        return this.coffees.find(item => item.id === +id);
+        const coffee = this.coffees.find(item => item.id === +id); 
+        if(!coffee){
+            throw new HttpException(`Coffee Nº ${id} not found.`, HttpStatus.NOT_FOUND)
+        }
+        return coffee;
     }
     create(createCoffeeDto: any){
         this.coffees.push(createCoffeeDto);
@@ -30,7 +40,8 @@ export class CoffessService {
     delete(id: string){
         const coffeeIndex = this.coffees.findIndex(item => item.id === +id);
         if(coffeeIndex >= 0){
-            this.coffees.splice(coffeeIndex, 0);
+            this.coffees.splice(coffeeIndex, 1);
         }
+        return this.coffees;
     }
 }
