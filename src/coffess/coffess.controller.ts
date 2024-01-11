@@ -6,23 +6,28 @@ export class CoffessController {
     constructor(private readonly coffeesService: CoffessService){}
     @Get()
     findAll(@Query() paginationQuery){
-        const { limit, offset } = paginationQuery;
-        return `This action returns all coffess. Limit = ${limit}. Offset = ${offset}`;
+        // const { limit, offset } = paginationQuery;
+        return this.coffeesService.findAll();
+        // return `This action returns all coffess. Limit = ${limit}. Offset = ${offset}`;
     }
     @Get(':id')
     findOne(@Param('id') id: string){
-        return `This action returns the ${id}`
+        return this.coffeesService.findOne(id);
+        // return `This action returns the ${id}`
     }
     @Post()
     create(@Body() body){
-        return body;
+        return this.coffeesService.create(body);
+        // return body;
     }
     @Patch(':id')
     update(@Param('id') id: string, @Body() body){
-        return `This action update the item with the ID: ${id}`
+        return this.coffeesService.update(id, body)
+        // return `This action update the item with the ID: ${id}`
     }
     @Delete(':id')
     delete(@Param('id') id: string){
-        return `This action delete the item with the ID: ${id}`
+        return this.coffeesService.delete(id);
+        // return `This action delete the item with the ID: ${id}`
     }
 }
