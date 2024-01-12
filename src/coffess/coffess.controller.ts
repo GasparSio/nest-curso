@@ -25,6 +25,6 @@ export class CoffessController {
     }
     @Delete(':id')
     delete(@Param('id') id: string){
-        return this.coffeesService.delete(id);
+        return this.coffeesService.remove(id);
     }
 }
