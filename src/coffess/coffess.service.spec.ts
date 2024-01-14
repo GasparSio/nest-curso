@@ -4,6 +4,7 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 import { Flavor } from './entities/flavor.entity.ts';
 import { Coffee } from './entities/coffee.entity';
 import { Repository } from 'typeorm';
+import { NotFoundException } from '@nestjs/common';
 
 
 
@@ -46,8 +47,16 @@ describe('CoffessService', () => {
       })
     })
     describe('otherwise', () => {
-      it('should throw the "NotFoundException"', () => {
-  
+      it('should throw the "NotFoundException"', async () => {
+        const coffeeId = 1;
+        coffeeRepository.findOne.mockReturnValue(undefined);
+
+        try {
+          await service.findOne(coffeeId);
+        } catch (error) {
+          expect(error).toBeInstanceOf(NotFoundException);
+          expect(error.message).toEqual(`Coffee Nº ${coffeeId} not found.`);
+        }
       })
     })
   })
