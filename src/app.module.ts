@@ -27,6 +27,8 @@ import * as Joi from '@hapi/joi';
       synchronize: true
   }), CoffeeRatingModule],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+  ],
 })
 export class AppModule {}
