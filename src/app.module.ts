@@ -5,6 +5,7 @@ import { CoffessModule } from './coffess/coffess.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CoffeeRatingModule } from './coffee-rating/coffee-rating.module';
 import { ConfigModule } from '@nestjs/config';
+import { CommonModule } from './common/common.module';
 import * as Joi from '@hapi/joi';
 
 @Module({
@@ -25,7 +26,7 @@ import * as Joi from '@hapi/joi';
       database: process.env.DATABASE_NAME,
       autoLoadEntities: true,
       synchronize: true
-  }), CoffeeRatingModule],
+  }), CoffeeRatingModule, CommonModule],
   controllers: [AppController],
   providers: [
     AppService,
