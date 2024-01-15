@@ -60,7 +60,5 @@ describe('CoffessService', () => {
       })
     })
   })
-
-
 });
 
