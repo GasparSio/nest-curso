@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Param, Patch, Post, Query, Req, SetMetad
 import { CoffessService } from './coffess.service';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
-import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto/pagination-query.dto';
+import { PaginationQueryDto } from 'src/common/dto/pagination-query/pagination-query.dto';
 import { Public } from 'src/common/decorators/public.decorator';
 
 @UsePipes(ValidationPipe)
